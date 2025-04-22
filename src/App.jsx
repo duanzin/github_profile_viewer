@@ -3,13 +3,19 @@ import { fetchGitHubUser } from "./api/githubUserApiCalls";
 import SearchBar from "./components/searchBar";
 import ProfileDisplay from "./components/profileDisplay";
 import NotFoundDisplay from "./components/notFoundDisplay";
-import Logo from "./assets/image 1.png";
+import LoadingSpinner from "./components/loadingSpinner";
+import Title from "./components/title";
 
 function App() {
   const [userData, setUserData] = useState(null);
   const [notFound, setNotFound] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleSearch = async (username) => {
+    setLoading(true);
+    setNotFound(false);
+    setUserData(null);
+
     const data = await fetchGitHubUser(username);
     if (data) {
       setUserData(data);
@@ -18,17 +24,14 @@ function App() {
       setUserData(null);
       setNotFound(true);
     }
+    setLoading(false);
   };
   return (
     <div className="flex items-center justify-center min-h-screen">
       <main className="w-6xl h-[33.5rem] py-10 bg-black flex flex-col items-center gap-8">
-        <div className="flex flex-row items-center justify-center gap-2.5">
-          <img src={Logo} alt="Logo Github" />
-          <h1 className="text-6xl text-white text-center font-semibold tracking-normal">
-            Perfil&nbsp;<b className="font-extrabold">GitHub</b>
-          </h1>
-        </div>
+        <Title />
         <SearchBar onSearch={handleSearch} />
+        {loading && <LoadingSpinner />}
         {notFound && <NotFoundDisplay />}
         {userData && (
           <ProfileDisplay
