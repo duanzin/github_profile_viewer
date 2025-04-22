@@ -13,7 +13,7 @@ Siga os passos abaixo para configurar o projeto localmente:
 
 1. Clone este repositório:
    ```bash
-   git clone https://github.com/duanzin/github_profile_viewer
+   git clone https://github.com/duanzin/github_profile_viewer.git
    ```
 2. Navegue até o diretório do projeto e instale as dependências:
    ```
