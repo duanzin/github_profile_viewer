@@ -5,6 +5,7 @@ import ProfileDisplay from "./components/profileDisplay";
 import NotFoundDisplay from "./components/notFoundDisplay";
 import LoadingSpinner from "./components/loadingSpinner";
 import Title from "./components/title";
+import BackgroundDeco from "./components/backgroundDeco";
 
 function App() {
   const [userData, setUserData] = useState(null);
@@ -27,8 +28,9 @@ function App() {
     setLoading(false);
   };
   return (
-    <div className="flex items-center justify-center min-h-screen">
-      <main className="w-6xl h-[33.5rem] py-10 bg-black flex flex-col items-center gap-8">
+    <div className="flex items-center justify-center min-h-screen relative">
+      <BackgroundDeco />
+      <main className="w-6xl h-[33.5rem] py-10 bg-black flex flex-col items-center gap-8 z-10">
         <Title />
         <SearchBar onSearch={handleSearch} />
         {loading && <LoadingSpinner />}
